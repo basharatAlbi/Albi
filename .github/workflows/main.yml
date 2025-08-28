@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Albi</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #3f4f22, #556b2f, #7a8f4a);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    .intro {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      animation: fadeOut 3s forwards;
+      animation-delay: 2s;
+      z-index: 2;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+    .content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: #ff4d88;
+    }
+    h2 {
+      margin: 10px 0 0;
+      font-size: 2rem;
+    }
+    .date {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    /* Falling words effect */
+    .rain {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .word {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ff4d88;
+      font-weight: bold;
+      top: -50px;
+      animation: fall linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="intro">Today is your Birthday!</div>
+  <div class="date">12 November</div>
+  <div class="content">
+    <h1>Happy Birthday Albi 🎉</h1>
+    <h2>I love you 💗</h2>
+  </div>
+  <div class="rain" id="rain"></div>  <script>
+    const rain = document.getElementById('rain');
+    const words = ["Happy Birthday Albi", "I love you 💗"];
+
+    for(let i=0; i<40; i++){
+      const span = document.createElement('div');
+      span.classList.add('word');
+      span.innerText = words[i % words.length];
+      span.style.left = Math.random()*100 + 'vw';
+      span.style.animationDuration = (3 + Math.random()*3) + 's';
+      span.style.animationDelay = Math.random()*5 + 's';
+      rain.appendChild(span);
+    }
+  </script></body>
+</html>
