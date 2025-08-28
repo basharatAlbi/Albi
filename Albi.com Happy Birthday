@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Henry Love Test</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffe6f0;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+    }
+    #noBtn {
+      background-color: #555;
+      color: white;
+      position: absolute;
+    }
+    #heart {
+      display: none;
+      font-size: 80px;
+      margin-top: 20px;
+      animation: heartbeat 1s infinite;
+      color: #ff1a75;
+    }
+    #loveText {
+      display: none;
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #d6004c;
+      text-shadow: 0 0 10px #ff4d88;
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Do you love Henry?</h1>
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn">No</button>
+  <div id="heart">💗</div>
+  <div id="loveText">I love you too Albi</div>  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const heart = document.getElementById('heart');
+    const loveText = document.getElementById('loveText');
+
+    let noClickCount = 0;
+    let moveRight = true;
+
+    yesBtn.addEventListener('click', () => {
+      heart.style.display = 'block';
+      loveText.style.display = 'block';
+    });
+
+    noBtn.addEventListener('click', () => {
+      noClickCount++;
+      let size = Math.max(10, 20 - noClickCount);
+      noBtn.style.fontSize = size + 'px';
+      yesBtn.style.fontSize = (20 + noClickCount * 3) + 'px';
+
+      if (moveRight) {
+        noBtn.style.right = '20px';
+        noBtn.style.left = '';
+      } else {
+        noBtn.style.left = '20px';
+        noBtn.style.right = '';
+      }
+      moveRight = !moveRight;
+
+      if (size <= 10) {
+        noBtn.style.display = 'none';
+      }
+    });
+  </script></body>
+</html>
